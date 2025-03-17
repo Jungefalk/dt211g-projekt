@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "jsdoc": "^4.0.4",
     "parcel": "^2.13.3"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
