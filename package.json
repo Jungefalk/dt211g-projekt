@@ -1,0 +1,17 @@
+{
+  "name": "projekt",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "author": "Caroline Jungefalk Palmgren",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
