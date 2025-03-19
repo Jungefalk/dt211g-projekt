@@ -1,21 +1,48 @@
 @use "base";
 @use "layout";
 
-body{
+body {
     background-color: base.$light-green;
     font-family: base.$primary-font;
 }
 
-header{
+header {
     @include base.headerFooter;
-    @include layout.centerFlex;
+    @include layout.flex;
     font-family: base.$header-font;
     font-size: 4.5em;
+    
+    img{
+        max-width: 100%;
+    }
 }
 
-footer{
+main{
+    @include layout.flex;
+    flex-direction: column
+}
+
+footer {
     @include base.headerFooter;
+    @include layout.flex;
+    flex-direction: column;
     text-align: center;
     padding: 1em;
+
+    p {
+        font-size: 1em;
+    }
+
+    h2{
+        font-size: 1.4em;
+    }
+}
+
+ul {
+    font-size: 1.1em;
+
+    li {
+        margin-bottom: 1.1em;
+    }
 }
 
