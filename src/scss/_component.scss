@@ -1,0 +1,21 @@
+@use "base";
+@use "layout";
+
+body{
+    background-color: base.$light-green;
+    font-family: base.$primary-font;
+}
+
+header{
+    @include base.headerFooter;
+    @include layout.centerFlex;
+    font-family: base.$header-font;
+    font-size: 4.5em;
+}
+
+footer{
+    @include base.headerFooter;
+    text-align: center;
+    padding: 1em;
+}
+
