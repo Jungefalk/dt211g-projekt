@@ -16,6 +16,7 @@ window.addEventListener("load", init);
 
 /**
  * Function init - Calls a function once the pages is fully loaded
+ * @function
  */
 function init() {
 
@@ -25,13 +26,13 @@ function init() {
 
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
+ * @function
  */
 function checkUserCoordinates() {
 
     //check if geolocation is supported by browser
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
-
 
             //get lat and lon from position and store in variables
             let latitude = position.coords.latitude;
@@ -57,7 +58,35 @@ function checkUserCoordinates() {
 };
 
 /**
+ * Function that converts users lat and lon to name of city with NominatiAPI
+ * @async
+ * @function
+ * @param {number} latitude  - User's latitude
+ * @param {number} longitude - User's longitude
+ */
+async function fetchUserCity(latitude, longitude) {
+
+    try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+        if (!response.ok) {
+            throw new Error ("fel vid anslutning");
+        };
+
+        const locationData = await response.json();
+        console.log(locationData);
+
+        let userCity = locationData.address.city;
+
+        console.log(userCity);
+
+    } catch (error) {
+        console.error("Ett fel uppstod:", error.message)
+    };
+};
+
+/**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
+ * @function
  */
 function readLocationErrorMessage() {
 
