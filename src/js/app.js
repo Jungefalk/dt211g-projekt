@@ -32,7 +32,7 @@ function checkUserCoordinates() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function (position) {
 
-            
+
             //get lat and lon from position and store in variables
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
@@ -45,13 +45,26 @@ function checkUserCoordinates() {
 
         }, function (error) {
             //If geolocation is not supported call error-message function
-            readLocationError();
+            readLocationErrorMessage();
 
         });
 
     } else {
         //If geolocation is not supported call error-message function
-        readLocationError();
+        readLocationErrorMessage();
     };
 
+};
+
+/**
+ * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
+ */
+function readLocationErrorMessage() {
+
+    let newPEl = document.createElement("p")
+    let newPElText = document.createTextNode('Din plats kunde inte hämtas. Välj din närmaste mätstation nedan.')
+    newPEl.appendChild(newPElText)
+    geoRegionEl.appendChild(newPEl)
+
+    console.log("Användarens plats kunde inte hämtas")
 };
