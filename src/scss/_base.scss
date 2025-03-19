@@ -1,10 +1,15 @@
 
 //color variables
-
 $light-green: #E9F1E4;
 $green: #759478;
 $dark-green: #456147;
 
-//font
+//font variables
 $primary-font: "Roboto", sans-serif;
 $header-font: "Londrina Shadow", "Roboto", sans-serif;
+
+//mixin for containers
+@mixin container($size, $radius: 10){
+    width: $size;
+    border-radius: $radius;
+}
