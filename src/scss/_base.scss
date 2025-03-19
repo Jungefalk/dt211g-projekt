@@ -7,6 +7,8 @@ $dark-green: #456147;
 //font variables
 $primary-font: "Roboto", sans-serif;
 $header-font: "Londrina Shadow", "Roboto", sans-serif;
+$font-col-white: white;
+$font-col-black: black;
 
 //mixin for containers
 @mixin container($size, $radius: 10){
