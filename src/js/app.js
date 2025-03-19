@@ -1,5 +1,9 @@
 "use strict"
 
+//Global variables
+
+let userLocationName = "";
+
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
 const geoRegionEl = document.getElementById("geoRegion");
@@ -23,7 +27,6 @@ function init() {
     console.log("Sidan har laddat in")
     checkUserCoordinates()
 }
-
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
  * @function
@@ -69,15 +72,15 @@ async function fetchUserCity(latitude, longitude) {
     try {
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
         if (!response.ok) {
-            throw new Error ("fel vid anslutning");
+            throw new Error("fel vid anslutning");
         };
 
         const locationData = await response.json();
         console.log(locationData);
 
-        let userCity = locationData.address.city;
-
-        console.log(userCity);
+        //multiple options depending on location type.
+        let userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
+        console.log(userLocationName);
 
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
