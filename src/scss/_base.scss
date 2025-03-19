@@ -9,12 +9,13 @@ $primary-font: "Roboto", sans-serif;
 $header-font: "Londrina Shadow", "Roboto", sans-serif;
 $font-col-light: $light-green;
 $font-col-black: black;
-$primary-fontsize: 1.5em;
+$primary-fontsize: 1.4em;
 $h2-size: 1.8em;
 
 //mixin for containers
-@mixin container($size, $radius: 10){
-    width: $size;
+@mixin container($size1, $size2, $radius: 10){
+    width: $size1;
+    height: $size2;
     border-radius: $radius;
 };
 
