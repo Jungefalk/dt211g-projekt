@@ -1,7 +1,6 @@
 "use strict"
 
 //get elements by id and store them in variable
-
 /** @type {HTMLDivElement} Element where geolocated region loads */
 const geoRegionEl = document.getElementById("geoRegion");
 
@@ -15,9 +14,44 @@ const barChartEl = document.getElementById("barChart");
 //Eventlistener 
 window.addEventListener("load", init);
 
-
-function init(){
+/**
+ * Function init - Calls a function once the pages is fully loaded
+ */
+function init() {
 
     console.log("Sidan har laddat in")
-    fetchUserLocation()
+    checkUserCoordinates()
 }
+
+/**
+ * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
+ */
+function checkUserCoordinates() {
+
+    //check if geolocation is supported by browser
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+
+            
+            //get lat and lon from position and store in variables
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+
+            console.log(latitude, longitude)
+
+            //Call function
+            fetchUserCity(latitude, longitude);
+
+
+        }, function (error) {
+            //If geolocation is not supported call error-message function
+            readLocationError();
+
+        });
+
+    } else {
+        //If geolocation is not supported call error-message function
+        readLocationError();
+    };
+
+};
