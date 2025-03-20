@@ -44,7 +44,7 @@ function checkUserCoordinates() {
             console.log(latitude, longitude)
 
             //Call function
-            fetchUserCity(latitude, longitude);
+            fetchUserLocation(latitude, longitude);
 
 
         }, function (error) {
@@ -67,7 +67,7 @@ function checkUserCoordinates() {
  * @param {number} latitude  - User's latitude
  * @param {number} longitude - User's longitude
  */
-async function fetchUserCity(latitude, longitude) {
+async function fetchUserLocation(latitude, longitude) {
 
     try {
         const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
