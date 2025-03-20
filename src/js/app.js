@@ -88,7 +88,7 @@ async function fetchUserLocation(latitude, longitude) {
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
-    
+
     fetchRegionData();
 };
 
@@ -121,17 +121,30 @@ function readRegionData(regionData) {
 
     //Check if users location matches any region names and update DOM
     let checkedRegion = regionData.items.find(region => region.name === userLocationName);
-    if (!checkedRegion) {
-        readLocationErrorMessage();
 
-    } else {
+    if (checkedRegion.name === userLocationName) {
+
         let newParagraphEl = document.createElement("p");
         let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
         newParagraphEl.appendChild(newParagraphText);
         geoRegionEl.appendChild(newParagraphEl);
+
+        console.log("Användarens plats ligger vid mätstation")
+
+    } else {
+        readLocationErrorMessage();
+        console.log("Användarens plats ligger inte vid mätstation")
     }
 
+    //loop data and update dom
+    regionData.items.forEach(data => {
 
+        let newParagraphEl = document.createElement("p");
+        let newParagraphText = document.createTextNode(`${data.name}`);
+        newParagraphEl.appendChild(newParagraphText);
+        allRegionsEl.appendChild(newParagraphEl);
+
+    });
 
 };
 
