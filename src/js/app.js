@@ -27,8 +27,7 @@ function init() {
 
     console.log("Sidan har laddat in");
     checkUserCoordinates();
-    fetchRegionData()
-    fetchPollenData()
+    fetchPollenData();
 }
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
