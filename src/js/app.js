@@ -41,7 +41,7 @@ function checkUserCoordinates() {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
-            console.log(latitude, longitude)
+            console.log("Användarens koordinater:", latitude, longitude)
 
             //Call function
             fetchUserLocation(latitude, longitude);
@@ -80,7 +80,7 @@ async function fetchUserLocation(latitude, longitude) {
 
         //multiple options depending on location type.
         let userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
-        console.log(userLocationName);
+        console.log("Namnet på platsen användaren befinner sig:", userLocationName);
 
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
