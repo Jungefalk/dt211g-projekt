@@ -1,9 +1,9 @@
 "use strict"
 
 //Global variables
-
 let userLocationName = "";
-let forecastData= [];
+let forecastData = [];
+let pollenData =[];
 
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
@@ -28,6 +28,7 @@ function init() {
     console.log("Sidan har laddat in");
     checkUserCoordinates();
     fetchRegionData()
+    fetchPollenData()
 }
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
@@ -172,6 +173,27 @@ async function fetchForecast(regionId) {
         console.error("Det uppstod ett fel:", error.message)
     };
 };
+
+/**
+ * Function that fetches pollen data from pollen api
+ * @async
+ * @function
+ */
+async function fetchPollenData() {
+    try {
+        const response = await fetch(`https://api.pollenrapporten.se/v1/pollen-types`);
+        if (!response.ok) {
+            throw new Error("fel vid anslutning");
+        };
+
+        pollenData = await response.json();
+        console.log(pollenData);
+
+    }catch (error){
+        console.error("Det uppstod ett fel:", error.message)
+    };
+};
+
 
 /**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
