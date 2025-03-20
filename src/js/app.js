@@ -78,13 +78,38 @@ async function fetchUserLocation(latitude, longitude) {
         const locationData = await response.json();
         console.log(locationData);
 
-        //multiple options depending on location type.
+        //multiple options depending on location type in nominatim.
         let userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
-        console.log("Namnet på platsen användaren befinner sig:", userLocationName);
+        console.log("Användaren befinner sig:", userLocationName);
 
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
+
+    fetchRegionData();
+};
+
+/**
+ * Function that fetches region-data from the pollen.api
+ * @async
+ * @function
+ */
+async function fetchRegionData() {
+    try {
+        const response = await fetch(`https://api.pollenrapporten.se/v1/regions`);
+        if (!response.ok) {
+            throw new Error("fel vid anslutning");
+        };
+
+        const regionData = await response.json();
+        console.log(regionData);
+
+    } catch (error) {
+        console.error("Det uppstod ett fel", error.message)
+    };
+
+    readRegionData(regionData);
+
 };
 
 /**
