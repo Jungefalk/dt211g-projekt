@@ -79,7 +79,7 @@ async function fetchUserLocation(latitude, longitude) {
         console.log(locationData);
 
         //multiple options depending on location type in nominatim.
-        let userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
+        userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
         console.log("Användaren befinner sig:", userLocationName);
 
     } catch (error) {
