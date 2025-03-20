@@ -26,7 +26,6 @@ function init() {
 
     console.log("Sidan har laddat in");
     checkUserCoordinates();
-    fetchRegionData();
 }
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
@@ -84,9 +83,13 @@ async function fetchUserLocation(latitude, longitude) {
         userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
         console.log("Användaren befinner sig:", userLocationName);
 
+
+
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
+    
+    fetchRegionData();
 };
 
 /**
@@ -121,14 +124,14 @@ function readRegionData(regionData) {
     if (!checkedRegion) {
         readLocationErrorMessage();
 
-    }else{
+    } else {
         let newParagraphEl = document.createElement("p");
         let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
         newParagraphEl.appendChild(newParagraphText);
         geoRegionEl.appendChild(newParagraphEl);
     }
 
-    
+
 
 };
 
