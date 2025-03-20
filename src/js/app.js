@@ -42,6 +42,7 @@ function checkUserCoordinates() {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
+
             console.log("Användarens koordinater:", latitude, longitude)
 
             //Call function
@@ -101,13 +102,33 @@ async function fetchRegionData() {
         };
 
         const regionData = await response.json();
-        console.log(regionData);
+        readRegionData(regionData);
 
     } catch (error) {
         console.error("Det uppstod ett fel", error.message)
     };
 
-    readRegionData(regionData);
+
+};
+/**
+ * @function
+ * @param {object} regionData 
+ */
+function readRegionData(regionData) {
+
+    //Check if users location matches any region names and update DOM
+    let checkedRegion = regionData.items.find(region => region.name === userLocationName);
+    if (!checkedRegion) {
+        readLocationErrorMessage();
+
+    }else{
+        let newParagraphEl = document.createElement("p");
+        let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
+        newParagraphEl.appendChild(newParagraphText);
+        geoRegionEl.appendChild(newParagraphEl);
+    }
+
+    
 
 };
 
