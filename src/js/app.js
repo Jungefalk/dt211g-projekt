@@ -24,8 +24,9 @@ window.addEventListener("load", init);
  */
 function init() {
 
-    console.log("Sidan har laddat in")
-    checkUserCoordinates()
+    console.log("Sidan har laddat in");
+    checkUserCoordinates();
+    fetchRegionData();
 }
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
@@ -85,8 +86,6 @@ async function fetchUserLocation(latitude, longitude) {
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
-
-    fetchRegionData();
 };
 
 /**
