@@ -41,7 +41,6 @@ function checkUserCoordinates() {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
-
             console.log("Användarens koordinater:", latitude, longitude)
 
             //Call function
@@ -83,8 +82,6 @@ async function fetchUserLocation(latitude, longitude) {
         userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
         console.log("Användaren befinner sig:", userLocationName);
 
-
-
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
@@ -120,10 +117,10 @@ async function fetchRegionData() {
 function readRegionData(regionData) {
 
     //Check if users location matches any region names and update DOM
+
     let checkedRegion = regionData.items.find(region => region.name === userLocationName);
 
     if (checkedRegion.name === userLocationName) {
-
         let newParagraphEl = document.createElement("p");
         let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
         newParagraphEl.appendChild(newParagraphText);
@@ -133,7 +130,6 @@ function readRegionData(regionData) {
 
     } else {
         readLocationErrorMessage();
-        console.log("Användarens plats ligger inte vid mätstation")
     }
 
     //loop data and update dom
@@ -144,9 +140,19 @@ function readRegionData(regionData) {
         newParagraphEl.appendChild(newParagraphText);
         allRegionsEl.appendChild(newParagraphEl);
 
+        //event listener that sends region ID of the clicked region to fetch the pollen forecast api
+        newParagraphEl.addEventListener("click", function () {
+            fetchForecast(data.id)
+        });
     });
 
 };
+
+function fetchForecast(regionId) {
+
+    console.log(regionId)
+
+}
 
 /**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
