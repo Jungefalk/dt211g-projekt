@@ -3,6 +3,7 @@
 //Global variables
 
 let userLocationName = "";
+let forecastData= [];
 
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
@@ -26,6 +27,7 @@ function init() {
 
     console.log("Sidan har laddat in");
     checkUserCoordinates();
+    fetchRegionData()
 }
 /**
  * Function that checks if geolocation is supported and gets users coodinates or returns errormessage
@@ -49,7 +51,6 @@ function checkUserCoordinates() {
 
         }, function (error) {
             //If geolocation is not supported call error-message function
-            readLocationErrorMessage();
 
         });
 
@@ -82,11 +83,13 @@ async function fetchUserLocation(latitude, longitude) {
         userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
         console.log("Användaren befinner sig:", userLocationName);
 
+        fetchRegionData()
+
     } catch (error) {
         console.error("Ett fel uppstod:", error.message)
     };
 
-    fetchRegionData();
+    
 };
 
 /**
@@ -111,6 +114,7 @@ async function fetchRegionData() {
 
 };
 /**
+ * Function that receives and checks region data then updates DOM
  * @function
  * @param {object} regionData 
  */
@@ -120,13 +124,14 @@ function readRegionData(regionData) {
 
     let checkedRegion = regionData.items.find(region => region.name === userLocationName);
 
-    if (checkedRegion.name === userLocationName) {
+    if (checkedRegion) {
         let newParagraphEl = document.createElement("p");
         let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
         newParagraphEl.appendChild(newParagraphText);
         geoRegionEl.appendChild(newParagraphEl);
 
         console.log("Användarens plats ligger vid mätstation")
+        fetchForecast(checkedRegion.id)
 
     } else {
         readLocationErrorMessage();
@@ -147,12 +152,26 @@ function readRegionData(regionData) {
     });
 
 };
+/**
+ * Function that fetches data from forecast pollen api based on received region id
+ * @async
+ * @function
+ * @param {number} regionId -- id of the users actual or chosen region.
+ */
+async function fetchForecast(regionId) {
+    try {
+        const response = await fetch(`https://api.pollenrapporten.se/v1/forecasts?region_id=${regionId}&current=true`);
+        if (!response.ok) {
+            throw new Error("fel vid anslutning");
+        };
 
-function fetchForecast(regionId) {
+        forecastData = await response.json();
+        console.log("det här är användarens:", forecastData);
 
-    console.log(regionId)
-
-}
+    }catch (error){
+        console.error("Det uppstod ett fel:", error.message)
+    };
+};
 
 /**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
