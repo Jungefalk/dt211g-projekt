@@ -117,6 +117,48 @@ ul {
 #barChart {
     max-width: 1100px;
     margin: 0 auto;
-}
+};
 
-;
+.pollenContainer {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+
+    img {
+        max-width: 50px;
+        position: absolute;
+        animation: fall 10s;
+    }
+};
+
+.pollen1{
+    left: 5%
+};
+
+.pollen2{
+    left: 18%;
+};
+
+.pollen3{
+    left: 32%;
+};
+
+.pollen4{
+    left: 47%;
+};
+
+.pollen5{
+    left: 60%;
+};
+
+.pollen6{
+    left: 70%;
+};
+
+.pollen7{
+    left: 80.5%;
+};
+
+.pollen8{
+    left: 90%;
+};
