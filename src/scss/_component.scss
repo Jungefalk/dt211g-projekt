@@ -73,7 +73,9 @@ ul {
 }
 
 .regionsContainer {
-    @include layout.flex;
+    display: none;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     background-color: base.$dark-green;
     border-radius: 2em;
@@ -117,43 +119,39 @@ ul {
 #barChart {
     max-width: 1100px;
     margin: 0 auto;
-};
+}
+
+;
 
 .pollenContainer {
     position: relative;
     width: 100%;
     z-index: 1;
 
+}
+
+;
+
+.pollen1 {
+    @include base.pollenImg(5%, 0s, 60s);
 };
 
-.pollen1{
-    @include base.pollenImg(5%, 2s, 60s);
+
+.pollen2 {
+    @include base.pollenImg(32%, 40s, 60s);
+}
+
+.pollen3 {
+    @include base.pollenImg(60%, 5s, 60s);
+}
+
+
+.pollen4 {
+    @include base.pollenImg(70%, 30s, 60s);
 };
 
-.pollen2{
-    @include base.pollenImg(18%, 36s, 60s);
-};
 
-.pollen3{
-    @include base.pollenImg(32%, 45s, 60s);
-};
 
-.pollen4{
-    @include base.pollenImg(47%, 9s, 60s);
-};
-
-.pollen5{
-    @include base.pollenImg(60%, 26s, 60s);
-};
-
-.pollen6{
-    @include base.pollenImg(70%, 38s, 60s);
-};
-
-.pollen7{
-    @include base.pollenImg(80%, 60s, 60s);;
-};
-
-.pollen8{
-    @include base.pollenImg(90%, 30s, 60s);
+.pollen5 {
+    @include base.pollenImg(90%, 20s, 60s);
 };

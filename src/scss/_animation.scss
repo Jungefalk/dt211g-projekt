@@ -11,13 +11,10 @@
             opacity: 75%; rotate: 1 deg;
         }
 
-        75%{
-            rotate: 10deg;
-        }
 
         100% {
-            transform: translateY(230vh);
-            opacity: 10%;
+            transform: translateY(150vh);
+            opacity: 0;
             rotate: 1deg;
         }
 };
