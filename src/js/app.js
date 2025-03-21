@@ -4,6 +4,7 @@
 let userLocationName = "";
 let forecastData = [];
 let pollenData = [];
+let todaysForecast = [];
 
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
@@ -113,6 +114,8 @@ async function fetchRegionData() {
 
 
 };
+
+
 /**
  * Function that receives and checks region data then updates DOM
  * @function
@@ -152,11 +155,13 @@ function readRegionData(regionData) {
     });
 
 };
+
+
 /**
  * Function that fetches data from forecast pollen api based on received region id
  * @async
  * @function
- * @param {number} regionId -- id of the users actual or chosen region.
+ * @param {string} regionId -- id of the users actual or chosen region.
  */
 async function fetchForecast(regionId) {
     try {
@@ -166,7 +171,31 @@ async function fetchForecast(regionId) {
         };
 
         forecastData = await response.json();
+        let checkDate = forecastData.items[0].levelSeries;
         console.log("det här är användarens:", forecastData);
+
+        //empty array incase user switches location
+        todaysForecast = [];
+
+        //check if the forecast is todays date
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        console.log(today)
+
+        checkDate.forEach(data => {
+
+            let apiDate = new Date(data.time);
+            apiDate.setHours(0, 0, 0, 0);
+
+            if (apiDate.getTime() === today.getTime()) {
+                todaysForecast.push({
+                    pollenId: data.pollenId,
+                    level: data.level,
+                    time: data.time
+                });
+            };
+        });
+        console.log(todaysForecast);
 
         readBarChart();
 
@@ -195,7 +224,12 @@ async function fetchPollenData() {
     };
 };
 
-function readBarChart(){
+/**
+ * Function that reads out barChart
+ * @function
+ */
+
+function readBarChart() {
 
     const pollenLevel = forecastData.items
 
@@ -203,20 +237,20 @@ function readBarChart(){
 
     const options = {
         chart: {
-          type: 'bar'
+            type: 'bar'
         },
         series: [{
-          name: 'sales',
-          data: [30,40,35,50,49,60,70,91,125]
+            name: 'sales',
+            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
         }],
         xaxis: {
-          categories: pollenName
+            categories: pollenName
         }
-      }
-      
-      const chart = new ApexCharts(document.querySelector("#barChart"), options);
-      
-      chart.render();
+    }
+
+    const chart = new ApexCharts(document.querySelector("#barChart"), options);
+
+    chart.render();
 }
 
 /**
