@@ -3,7 +3,7 @@
 //Global variables
 let userLocationName = "";
 let forecastData = [];
-let pollenData =[];
+let pollenData = [];
 
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
@@ -197,6 +197,26 @@ async function fetchPollenData() {
 
 function readBarChart(){
 
+    const pollenLevel = forecastData.items
+
+    const pollenName = pollenData.items.map(pollen => pollen.name);
+
+    const options = {
+        chart: {
+          type: 'bar'
+        },
+        series: [{
+          name: 'sales',
+          data: [30,40,35,50,49,60,70,91,125]
+        }],
+        xaxis: {
+          categories: pollenName
+        }
+      }
+      
+      const chart = new ApexCharts(document.querySelector("#barChart"), options);
+      
+      chart.render();
 }
 
 /**

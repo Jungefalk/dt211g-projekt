@@ -6,13 +6,7 @@ body {
     font-family: base.$primary-font;
 }
 
-button {
-    @include base.container(9em, 2.5em);
-    background-color: base.$dark-green;
-    color: base.$light-green;
-    font-size: base.$primary-fontsize;
-    box-shadow: rgba(0, 0, 0, 0.554) 0 3px 3px 0;
-}
+
 
 button:hover {
     box-shadow: none;
@@ -32,8 +26,22 @@ header {
 }
 
 main {
-    @include layout.flex;
-    flex-direction: column
+    max-width: 60%;
+    margin: auto;
+
+    h2 {
+        text-align: center
+    }
+
+    button {
+        display: block;
+        margin: 0 auto;
+        @include base.container(9em, 2.5em);
+        background-color: base.$dark-green;
+        color: base.$light-green;
+        font-size: base.$primary-fontsize;
+        box-shadow: rgba(0, 0, 0, 0.554) 0 3px 3px 0;
+    }
 }
 
 footer {
@@ -65,6 +73,8 @@ ul {
 }
 
 .regionsContainer {
+    @include layout.flex;
+    flex-direction: column;
     background-color: base.$dark-green;
     border-radius: 2em;
     padding: 1.2em;
@@ -103,3 +113,10 @@ ul {
         font-size: base.$h2-size;
     }
 }
+
+#barChart {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+;
