@@ -52,6 +52,9 @@ function checkUserCoordinates() {
 
         }, function (error) {
             //If geolocation is not supported call error-message function
+            fetchRegionData()
+
+
 
         });
 
@@ -158,7 +161,8 @@ function readRegionData(regionData) {
 
 
 /**
- * Function that fetches data from forecast pollen api based on received region id
+ * Function that fetches pollen forecast data and processes todays pollen-forecast. 
+ * It matches pollentypes and updates "todaysForcast".
  * @async
  * @function
  * @param {string} regionId -- id of the users actual or chosen region.
@@ -187,11 +191,17 @@ async function fetchForecast(regionId) {
             let apiDate = new Date(data.time);
             apiDate.setHours(0, 0, 0, 0);
 
+            //match polleniD in forecast with pollen-types to get the pollen name
+            let pollenIdMatch = pollenData.items.find(pollen => pollen.id === data.pollenId);
+
+
+            //check date an create new objet
             if (apiDate.getTime() === today.getTime()) {
                 todaysForecast.push({
                     pollenId: data.pollenId,
                     level: data.level,
-                    time: data.time
+                    time: data.time,
+                    name: pollenIdMatch.name //add pollen name
                 });
             };
         });
@@ -231,9 +241,8 @@ async function fetchPollenData() {
 
 function readBarChart() {
 
-    const pollenLevel = forecastData.items
-
-    const pollenName = pollenData.items.map(pollen => pollen.name);
+    const pollenName = todaysForecast.map(pollen => pollen.name);
+    const pollenLevel = todaysForecast.map(pollen => pollen.level);
 
     const options = {
         chart: {
@@ -241,7 +250,7 @@ function readBarChart() {
         },
         series: [{
             name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+            data: pollenLevel
         }],
         xaxis: {
             categories: pollenName
@@ -254,7 +263,7 @@ function readBarChart() {
 }
 
 /**
- * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
+ * Function that creates <p> - element and shows message in case user location cannot be found or does not match any region
  * @function
  */
 function readLocationErrorMessage() {
