@@ -16,9 +16,27 @@ const allRegionsEl = document.getElementById("allRegions");
 /** @type {HTMLDivElement} Element where the bar chart is loaded*/
 const barChartEl = document.getElementById("barChart");
 
+/**@type {HTMLButtonElement} Button element */
+const showBtnEl = document.getElementById("showBtn")
+
 
 //Eventlistener 
 window.addEventListener("load", init);
+showBtnEl.addEventListener("click", toggleRegionContainer);
+
+/**
+ * Displays the regions-list on click
+ */
+function toggleRegionContainer(){
+
+    const regionsContainerEl = document.getElementById("regionsContainer")
+
+    if (regionsContainerEl.style.display === "none") {
+        regionsContainerEl.style.display = "flex";
+    } else {
+        regionsContainerEl.style.display = "none";
+    }
+};
 
 /**
  * Function init - Calls a function once the pages is fully loaded
