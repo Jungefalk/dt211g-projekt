@@ -22,3 +22,13 @@ $h2-size: 1.8em;
     background-color: #759478;
     color: $font-col-light;
 };
+
+@mixin pollenImg ($left, $delay, $duration){
+    max-width: 50px;
+    top: -66px;
+    position: absolute;
+    left: $left;
+    animation: fall $duration infinite $delay;
+
+};
+   

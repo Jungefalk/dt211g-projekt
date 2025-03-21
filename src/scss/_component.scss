@@ -124,41 +124,36 @@ ul {
     width: 100%;
     z-index: 1;
 
-    img {
-        max-width: 50px;
-        position: absolute;
-        animation: fall 10s;
-    }
 };
 
 .pollen1{
-    left: 5%
+    @include base.pollenImg(5%, 2s, 60s);
 };
 
 .pollen2{
-    left: 18%;
+    @include base.pollenImg(18%, 36s, 60s);
 };
 
 .pollen3{
-    left: 32%;
+    @include base.pollenImg(32%, 45s, 60s);
 };
 
 .pollen4{
-    left: 47%;
+    @include base.pollenImg(47%, 9s, 60s);
 };
 
 .pollen5{
-    left: 60%;
+    @include base.pollenImg(60%, 26s, 60s);
 };
 
 .pollen6{
-    left: 70%;
+    @include base.pollenImg(70%, 38s, 60s);
 };
 
 .pollen7{
-    left: 80.5%;
+    @include base.pollenImg(80%, 60s, 60s);;
 };
 
 .pollen8{
-    left: 90%;
+    @include base.pollenImg(90%, 30s, 60s);
 };

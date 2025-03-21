@@ -1,0 +1,23 @@
+@keyframes fall{
+        0% {
+            opacity: 90%;
+        }
+
+        25% {
+            rotate: -10deg;
+        }
+
+        50% {
+            opacity: 75%; rotate: 1 deg;
+        }
+
+        75%{
+            rotate: 10deg;
+        }
+
+        100% {
+            transform: translateY(230vh);
+            opacity: 10%;
+            rotate: 1deg;
+        }
+};
