@@ -70,12 +70,12 @@ ul {
     padding: 1.2em;
     margin-top: 2em;
 
-    p {
+    li {
         margin: 0.6em;
         font-size: base.$primary-fontsize;
     }
 
-    p:hover {
+    li:hover {
         text-decoration: underline 2px;
         cursor: pointer;
     }

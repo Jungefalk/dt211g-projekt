@@ -89,7 +89,7 @@ async function fetchUserLocation(latitude, longitude) {
         console.error("Ett fel uppstod:", error.message)
     };
 
-    
+
 };
 
 /**
@@ -140,7 +140,7 @@ function readRegionData(regionData) {
     //loop data and update dom
     regionData.items.forEach(data => {
 
-        let newParagraphEl = document.createElement("p");
+        let newParagraphEl = document.createElement("li");
         let newParagraphText = document.createTextNode(`${data.name}`);
         newParagraphEl.appendChild(newParagraphText);
         allRegionsEl.appendChild(newParagraphEl);
@@ -168,7 +168,9 @@ async function fetchForecast(regionId) {
         forecastData = await response.json();
         console.log("det här är användarens:", forecastData);
 
-    }catch (error){
+        readBarChart();
+
+    } catch (error) {
         console.error("Det uppstod ett fel:", error.message)
     };
 };
@@ -188,11 +190,14 @@ async function fetchPollenData() {
         pollenData = await response.json();
         console.log(pollenData);
 
-    }catch (error){
+    } catch (error) {
         console.error("Det uppstod ett fel:", error.message)
     };
 };
 
+function readBarChart(){
+
+}
 
 /**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match measurestation city
