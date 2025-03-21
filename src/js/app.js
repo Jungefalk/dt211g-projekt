@@ -72,8 +72,6 @@ function checkUserCoordinates() {
             //If geolocation is not supported call error-message function
             fetchRegionData()
 
-
-
         });
 
     } else {
@@ -286,10 +284,11 @@ function readBarChart() {
  */
 function readLocationErrorMessage() {
 
-    let newPEl = document.createElement("p")
-    let newPElText = document.createTextNode('Din plats kunde inte hämtas. Välj din närmaste mätstation nedan.')
-    newPEl.appendChild(newPElText)
-    geoRegionEl.appendChild(newPEl)
+    let newPEl = document.createElement("p");
+    let newPElText = document.createTextNode('Din plats kunde inte hämtas. Välj din närmaste mätstation nedan.');
+    newPEl.appendChild(newPElText);
+    newPEl.classList.add("errorMessage");
+    geoRegionEl.appendChild(newPEl);
 
-    console.log("Användarens plats kunde inte hämtas")
+    console.log("Användarens plats kunde inte hämtas");
 };
