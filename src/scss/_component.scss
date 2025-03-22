@@ -41,6 +41,8 @@ main {
         color: base.$light-green;
         font-size: base.$primary-fontsize;
         box-shadow: rgba(0, 0, 0, 0.554) 0 3px 3px 0;
+        margin-top: 2em;
+        margin-bottom: 4em
     }
 }
 
@@ -100,7 +102,7 @@ ul {
     }
 }
 
-#allRegions {
+.allRegions {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     color: base.$light-green;
@@ -113,15 +115,12 @@ ul {
         text-transform: uppercase;
         text-align: center;
         font-size: base.$h2-size;
-    }
-
-    ;
+    };
 
     .errorMessage {
         text-transform: none;
         font-size: 1em;
     };
-
     
 };
 
