@@ -16,7 +16,7 @@ const geoRegionEl = document.getElementById("geoRegion");
 const allRegionsEl = document.getElementById("allRegions");
 
 /** @type {HTMLDivElement} Element where the bar chart is loaded*/
-const barChartEl = document.getElementById("barChart");
+let barChartEl = document.getElementById("barChart");
 
 /**@type {HTMLButtonElement} Button element */
 const showBtnEl = document.getElementById("showBtn")
@@ -270,12 +270,16 @@ async function fetchPollenData() {
 
 function readBarChart() {
 
+    //Empty bar chart
+    barChartEl.innerHTML = "";
+
     const pollenName = todaysForecast.map(pollen => pollen.name);
     const pollenLevel = todaysForecast.map(pollen => pollen.level);
 
     const options = {
         chart: {
-            type: 'bar'
+            type: 'bar',
+            height: 500
         },
         series: [{
             name: 'Pollennivå',
@@ -283,18 +287,74 @@ function readBarChart() {
         }],
         xaxis: {
             categories: pollenName,
+            labels:{
+                style:{
+                    colors: ["#456147"],
+                    fontFamily: "Roboto",
+                    fontSize: "12px",
+                    fontWeight:600,
+                }
+            }
         },
         yaxis: {
             tickAmount: 5,
+            min: 0,
             max: 5,
-
+            labels:{
+                style:{
+                    colors: ["#456147"],
+                    fontFamily: "Roboto",
+                    fontSize: "16px"
+                }
+            }
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 3,
+                colors: {
+                    ranges: [{
+                        from: 1,
+                        to: 2,
+                        color: "#5CB338"
+                    },
+                    {
+                        from: 2,
+                        to: 3,
+                        color: "#90b338"
+                    },
+                    {
+                        from: 3,
+                        to: 4,
+                        color: "#FFC145"
+                    },
+                    {
+                        from: 4,
+                        to: 5,
+                        color: "#FF9D23"
+                    },
+                    {
+                        from: 5,
+                        to: 6,
+                        color: "#E52020"
+                    }
+                    ],
+                }
+            }
+        },
+        dataLabels: {
+                style: {
+                    colors: ["#18230F"],
+                    fontFamily: "Roboto",
+                    fontSize: "16px",
+                    fontWeight:700,
+            }
         }
-    }
+    };
 
     const chart = new ApexCharts(document.querySelector("#barChart"), options);
 
     chart.render();
-}
+};
 
 /**
  * Function that creates <p> - element and shows message in case user location cannot be found or does not match any region
