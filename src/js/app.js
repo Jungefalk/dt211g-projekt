@@ -21,6 +21,8 @@ let barChartEl = document.getElementById("barChart");
 /**@type {HTMLButtonElement} Button element */
 const showBtnEl = document.getElementById("showBtn")
 
+/**@type {HTMLDivElement} Div element wfere forecast text will appear*/
+const infoTextEl = document.getElementById("infoText");
 
 //Eventlistener 
 window.addEventListener("load", init);
@@ -207,6 +209,16 @@ async function fetchForecast(regionId) {
         let checkDate = forecastData.items[0].levelSeries;
         console.log("det här är användarens:", forecastData);
 
+        //save foecast text in varable and update DOM
+        let forecastText = forecastData.items[0].text;
+
+        let newParagraphEl = document.createElement("p")
+        let newParagraphText = document.createTextNode(forecastText);
+        newParagraphEl.appendChild(newParagraphText);
+        newParagraphEl.classList.add("infoMessage");
+        infoTextEl.appendChild(newParagraphEl);
+
+
         //empty array incase user switches location
         todaysForecast = [];
 
@@ -230,9 +242,11 @@ async function fetchForecast(regionId) {
                     pollenId: data.pollenId,
                     level: data.level,
                     time: data.time,
-                    name: pollenIdMatch.name //add pollen name
+                    name: pollenIdMatch.name, //add pollen name
                 });
             };
+
+
         });
         console.log(todaysForecast);
 
@@ -287,12 +301,12 @@ function readBarChart() {
         }],
         xaxis: {
             categories: pollenName,
-            labels:{
-                style:{
+            labels: {
+                style: {
                     colors: ["#456147"],
                     fontFamily: "Roboto",
                     fontSize: "12px",
-                    fontWeight:600,
+                    fontWeight: 600,
                 }
             }
         },
@@ -300,8 +314,8 @@ function readBarChart() {
             tickAmount: 5,
             min: 0,
             max: 5,
-            labels:{
-                style:{
+            labels: {
+                style: {
                     colors: ["#456147"],
                     fontFamily: "Roboto",
                     fontSize: "16px"
@@ -342,11 +356,11 @@ function readBarChart() {
             }
         },
         dataLabels: {
-                style: {
-                    colors: ["#18230F"],
-                    fontFamily: "Roboto",
-                    fontSize: "16px",
-                    fontWeight:700,
+            style: {
+                colors: ["#18230F"],
+                fontFamily: "Roboto",
+                fontSize: "16px",
+                fontWeight: 700,
             }
         }
     };
