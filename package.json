@@ -11,14 +11,14 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.14.1",
     "jsdoc": "^4.0.4",
     "parcel": "^2.13.3",
+    "sass": "^1.86.0",
     "sharp": "^0.33.5"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
-    "@parcel/transformer-sass": "^2.14.1",
-    "apexcharts": "^4.5.0",
-    "sass": "^1.86.0"
+    "apexcharts": "^4.5.0"
   }
 }
