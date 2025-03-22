@@ -18,7 +18,7 @@ header {
     @include base.headerFooter;
     @include layout.flex;
     font-family: base.$header-font;
-    font-size: 4.5em;
+    font-size: 3.5em;
 
     img {
         max-width: 100%;
