@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build/index.html"
   },
   "author": "Caroline Jungefalk Palmgren",
   "license": "ISC",
