@@ -1,22 +1,24 @@
 {
-  "name": "moment1",
+  "name": "projekt",
   "version": "1.0.0",
-  "author": "Caroline Jungefalk",
-  "license": "ISC",
+  "source": "src/index.html",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
-    "build": "parcel build src/index.html"
+    "build": "parcel build"
   },
+  "author": "Caroline Jungefalk Palmgren",
+  "license": "ISC",
   "description": "",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.13.3",
+    "@parcel/transformer-sass": "^2.14.1",
     "jsdoc": "^4.0.4",
     "parcel": "^2.13.3",
+    "sass": "^1.86.0",
     "sharp": "^0.33.5"
   },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
-    "apexcharts": "^4.5.0",
-    "chart.js": "^4.4.8"
+    "apexcharts": "^4.5.0"
   }
 }
