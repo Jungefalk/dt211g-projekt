@@ -5,6 +5,8 @@ let userLocationName = "";
 let forecastData = [];
 let pollenData = [];
 let todaysForecast = [];
+let messageEl = 0;
+let geoRegionName = "";
 
 //get elements by id and store them in variable
 /** @type {HTMLDivElement} Element where geolocated region loads */
@@ -27,7 +29,7 @@ showBtnEl.addEventListener("click", toggleRegionContainer);
 /**
  * Displays the regions-list on click
  */
-function toggleRegionContainer(){
+function toggleRegionContainer() {
 
     const regionsContainerEl = document.getElementById("regionsContainer")
 
@@ -147,10 +149,10 @@ function readRegionData(regionData) {
     let checkedRegion = regionData.items.find(region => region.name === userLocationName);
 
     if (checkedRegion) {
-        let newParagraphEl = document.createElement("p");
-        let newParagraphText = document.createTextNode(`${checkedRegion.name}`);
-        newParagraphEl.appendChild(newParagraphText);
-        geoRegionEl.appendChild(newParagraphEl);
+        geoRegionName = document.createElement("p");
+        let geoRegionText = document.createTextNode(`${checkedRegion.name}`);
+        geoRegionName.appendChild(geoRegionText);
+        geoRegionEl.appendChild(geoRegionName);
 
         console.log("Användarens plats ligger vid mätstation")
         fetchForecast(checkedRegion.id)
@@ -162,13 +164,24 @@ function readRegionData(regionData) {
     //loop data and update dom
     regionData.items.forEach(data => {
 
-        let newParagraphEl = document.createElement("li");
-        let newParagraphText = document.createTextNode(`${data.name}`);
-        newParagraphEl.appendChild(newParagraphText);
-        allRegionsEl.appendChild(newParagraphEl);
+        let newLiEl = document.createElement("li");
+        let newLiText = document.createTextNode(`${data.name}`);
+        newLiEl.appendChild(newLiText);
+        allRegionsEl.appendChild(newLiEl);
 
-        //event listener that sends region ID of the clicked region to fetch the pollen forecast api
-        newParagraphEl.addEventListener("click", function () {
+        //send region ID of the clicked region to fetch the pollen forecast api and update DOM 
+        newLiEl.addEventListener("click", function () {
+
+
+            //Update textcontent with the chosen region name
+            if (messageEl) {
+                messageEl.textContent = `${data.name}`
+            };
+            if (geoRegionName) {
+                geoRegionName.textContent = `${data.name}`
+            };
+
+
             fetchForecast(data.id)
         });
     });
@@ -265,7 +278,7 @@ function readBarChart() {
             type: 'bar'
         },
         series: [{
-            name: 'sales',
+            name: 'Pollennivå',
             data: pollenLevel
         }],
         xaxis: {
@@ -284,11 +297,11 @@ function readBarChart() {
  */
 function readLocationErrorMessage() {
 
-    let newPEl = document.createElement("p");
-    let newPElText = document.createTextNode('Din plats kunde inte hämtas. Välj din närmaste mätstation nedan.');
-    newPEl.appendChild(newPElText);
-    newPEl.classList.add("errorMessage");
-    geoRegionEl.appendChild(newPEl);
+    messageEl = document.createElement("p");
+    let newMessageText = document.createTextNode('Din plats kunde inte hämtas. Välj din närmaste mätstation nedan.');
+    messageEl.appendChild(newMessageText);
+    messageEl.classList.add("errorMessage");
+    geoRegionEl.appendChild(messageEl);
 
     console.log("Användarens plats kunde inte hämtas");
 };
