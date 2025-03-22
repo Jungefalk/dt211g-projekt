@@ -17,21 +17,21 @@
 
 <body>
 
-<!-- container with pollen-images for animation -->
-<div class="pollenContainer">
-<img class="pollen1" src="images/pollen1.png" alt="pollen">
-<img class="pollen2" src="images/pollen2.png" alt="pollen">
-<img class="pollen3" src="images/pollen3.png" alt="pollen">
-<img class="pollen4" src="images/pollen4.png" alt="pollen">
-<img class="pollen5" src="images/pollen1.png" alt="pollen">
-</div>
+    <!-- container with pollen-images for animation -->
+    <div class="pollenContainer">
+        <img class="pollen1" src="images/pollen1.png" alt="pollen">
+        <img class="pollen2" src="images/pollen2.png" alt="pollen">
+        <img class="pollen3" src="images/pollen3.png" alt="pollen">
+        <img class="pollen4" src="images/pollen4.png" alt="pollen">
+        <img class="pollen5" src="images/pollen1.png" alt="pollen">
+    </div>
 
     <!-- header start -->
     <header>
         <h1>POLLENPROGNOSEN</h1>
         <picture>
-            <source srcset="images/logo.png?as=webp&width=300" type="image/webp">
-            <img src="images/logo.png?width=300" alt="Tecknad humla på blomma">
+            <source srcset="images/logo.png?as=webp&width=200" type="image/webp">
+            <img src="images/logo.png?width=200" alt="Tecknad humla på blomma">
         </picture>
     </header>
     <!-- header end -->
@@ -40,21 +40,23 @@
     <main>
 
         <section class="geoRegionCon">
-            <h2>Pollenprognos för:</h2>
-            <div id="geoRegion">
+            <h2>Din plats:</h2>
+            <div class="geoRegion" id="geoRegion">
             </div>
         </section>
 
-        <button id="showBtn">Visa mätstationer</button>
+        <button id="showBtn">Välj mätstation</button>
 
         <section class="regionsContainer" id="regionsContainer">
             <h3>Välj din närmaste mätstation</h3>
-            <ul id="allRegions"></ul>
+            <ul class="allRegions" id="allRegions"></ul>
         </section>
 
-        <h2>Pollenmätning</h2>
+
+        <h2>Dagens pollen-prognos:</h2>
+        <div id="infoText"></div>
         <div id="barChart"></div>
-        
+
     </main>
 
     <!-- main end -->

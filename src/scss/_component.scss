@@ -18,7 +18,7 @@ header {
     @include base.headerFooter;
     @include layout.flex;
     font-family: base.$header-font;
-    font-size: 4.5em;
+    font-size: 2.5em;
 
     img {
         max-width: 100%;
@@ -26,11 +26,11 @@ header {
 }
 
 main {
-    max-width: 60%;
+    max-width: 80%;
     margin: auto;
 
     h2 {
-        text-align: center
+        text-align: center;
     }
 
     button {
@@ -41,6 +41,8 @@ main {
         color: base.$light-green;
         font-size: base.$primary-fontsize;
         box-shadow: rgba(0, 0, 0, 0.554) 0 3px 3px 0;
+        margin-top: 2em;
+        margin-bottom: 2em
     }
 }
 
@@ -79,12 +81,15 @@ ul {
     flex-direction: column;
     background-color: base.$dark-green;
     border-radius: 2em;
-    padding: 1.2em;
-    margin-top: 2em;
+    padding: 0.4em;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 2em;
 
     li {
-        margin: 0.6em;
+        margin: 0.3em;
         font-size: base.$primary-fontsize;
+        padding: 0.1em;
     }
 
     li:hover {
@@ -100,7 +105,7 @@ ul {
     }
 }
 
-#allRegions {
+.allRegions {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     color: base.$light-green;
@@ -112,18 +117,42 @@ ul {
     p {
         text-transform: uppercase;
         text-align: center;
-        font-size: base.$h2-size;
-    };
+        font-size: 1.5em;
+    }
 
-    .errorMessage{
+    ;
+
+    .errorMessage {
         text-transform: none;
         font-size: 1em;
-        };
-};
+    }
+
+    ;
+
+}
+
+;
+
+
+#infoText {
+    max-width: 800px;
+    margin-top: 2em;
+    margin: 0 auto;
+
+    .infoMessage {
+        text-align: center;
+        font-size: 1.3em;
+        line-height: 2em;
+    }
+}
+
 
 #barChart {
-    max-width: 1100px;
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
+    max-width: 1000px;
+    margin-bottom: 4em;
 }
 
 ;
@@ -139,7 +168,9 @@ ul {
 
 .pollen1 {
     @include base.pollenImg(5%, 0s, 60s);
-};
+}
+
+;
 
 
 .pollen2 {
@@ -153,11 +184,14 @@ ul {
 
 .pollen4 {
     @include base.pollenImg(70%, 30s, 60s);
-};
+}
+
+;
 
 
 
 .pollen5 {
     @include base.pollenImg(90%, 20s, 60s);
-};
+}
 
+;
