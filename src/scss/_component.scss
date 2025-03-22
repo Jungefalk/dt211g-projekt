@@ -18,7 +18,7 @@ header {
     @include base.headerFooter;
     @include layout.flex;
     font-family: base.$header-font;
-    font-size: 3.5em;
+    font-size: 2.5em;
 
     img {
         max-width: 100%;
@@ -30,7 +30,7 @@ main {
     margin: auto;
 
     h2 {
-        text-align: center
+        text-align: center;
     }
 
     button {
@@ -42,7 +42,7 @@ main {
         font-size: base.$primary-fontsize;
         box-shadow: rgba(0, 0, 0, 0.554) 0 3px 3px 0;
         margin-top: 2em;
-        margin-bottom: 4em
+        margin-bottom: 2em
     }
 }
 
@@ -81,12 +81,15 @@ ul {
     flex-direction: column;
     background-color: base.$dark-green;
     border-radius: 2em;
-    padding: 1.2em;
-    margin-top: 2em;
+    padding: 0.4em;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-bottom: 2em;
 
     li {
-        margin: 0.6em;
+        margin: 0.3em;
         font-size: base.$primary-fontsize;
+        padding: 0.1em;
     }
 
     li:hover {
@@ -114,15 +117,35 @@ ul {
     p {
         text-transform: uppercase;
         text-align: center;
-        font-size: base.$h2-size;
-    };
+        font-size: 1.5em;
+    }
+
+    ;
 
     .errorMessage {
         text-transform: none;
         font-size: 1em;
-    };
-    
-};
+    }
+
+    ;
+
+}
+
+;
+
+
+#infoText {
+    max-width: 800px;
+    margin-top: 2em;
+    margin: 0 auto;
+
+    .infoMessage {
+        text-align: center;
+        font-size: 1.3em;
+        line-height: 2em;
+    }
+}
+
 
 #barChart {
     display: flex;
@@ -130,7 +153,9 @@ ul {
     margin: 0 auto;
     max-width: 1000px;
     margin-bottom: 4em;
-};
+}
+
+;
 
 .pollenContainer {
     position: relative;

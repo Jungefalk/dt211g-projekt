@@ -29,7 +29,7 @@ window.addEventListener("load", init);
 showBtnEl.addEventListener("click", toggleRegionContainer);
 
 /**
- * Displays the regions-list on click
+ * Displays the all-regions container on click
  */
 function toggleRegionContainer() {
 
@@ -212,6 +212,8 @@ async function fetchForecast(regionId) {
         //save foecast text in varable and update DOM
         let forecastText = forecastData.items[0].text;
 
+        infoTextEl.innerHTML = "";
+
         let newParagraphEl = document.createElement("p")
         let newParagraphText = document.createTextNode(forecastText);
         newParagraphEl.appendChild(newParagraphText);
@@ -236,7 +238,7 @@ async function fetchForecast(regionId) {
             let pollenIdMatch = pollenData.items.find(pollen => pollen.id === data.pollenId);
 
 
-            //check date an create new objet
+            //check date and create new object - save i global variable
             if (apiDate.getTime() === today.getTime()) {
                 todaysForecast.push({
                     pollenId: data.pollenId,
@@ -281,7 +283,6 @@ async function fetchPollenData() {
  * Function that reads out barChart
  * @function
  */
-
 function readBarChart() {
 
     //Empty bar chart
