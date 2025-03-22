@@ -282,7 +282,12 @@ function readBarChart() {
             data: pollenLevel
         }],
         xaxis: {
-            categories: pollenName
+            categories: pollenName,
+        },
+        yaxis: {
+            tickAmount: 5,
+            max: 5,
+
         }
     }
 
