@@ -1,6 +1,6 @@
 //color variables
 $light-green: #E9F1E4;
-$green: #759478;
+$green: #5c725d;
 $dark-green: #456147;
 
 //font variables
@@ -20,7 +20,7 @@ $h2-size: 1.8em;
 
 //mixin for header and footer
 @mixin headerFooter {
-    background-color: #759478;
+    background-color: $green;
     color: $font-col-light;
 };
 
