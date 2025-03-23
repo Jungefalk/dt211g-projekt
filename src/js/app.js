@@ -48,7 +48,6 @@ function toggleRegionContainer() {
  */
 function init() {
 
-    console.log("Sidan har laddat in");
     checkUserCoordinates();
     fetchPollenData();
 }
@@ -66,7 +65,6 @@ function checkUserCoordinates() {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
-            console.log("Användarens koordinater:", latitude, longitude)
 
             //Call function
             fetchUserLocation(latitude, longitude);
@@ -101,11 +99,9 @@ async function fetchUserLocation(latitude, longitude) {
         };
 
         const locationData = await response.json();
-        console.log(locationData);
 
         //multiple options depending on location type in nominatim.
         userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
-        console.log("Användaren befinner sig:", userLocationName);
 
         fetchRegionData()
 
@@ -156,7 +152,7 @@ function readRegionData(regionData) {
         geoRegionName.appendChild(geoRegionText);
         geoRegionEl.appendChild(geoRegionName);
 
-        console.log("Användarens plats ligger vid mätstation")
+
         fetchForecast(checkedRegion.id)
 
     } else {
@@ -207,7 +203,6 @@ async function fetchForecast(regionId) {
 
         forecastData = await response.json();
         let checkDate = forecastData.items[0].levelSeries;
-        console.log("det här är användarens:", forecastData);
 
         //save foecast text in varable and update DOM
         let forecastText = forecastData.items[0].text;
@@ -382,6 +377,4 @@ function readLocationErrorMessage() {
     messageEl.appendChild(newMessageText);
     messageEl.classList.add("errorMessage");
     geoRegionEl.appendChild(messageEl);
-
-    console.log("Användarens plats kunde inte hämtas");
 };
