@@ -1,6 +1,7 @@
-## Projektuppgift i frontendbaserad webbutveckling - dt211G på Mittuniversitetet
-Av: Caroline Jungefalk Palmgren
+## Projekt - DT211G :seedling:
+### Av: Caroline Jungefalk Palmgren
 
-Webbplatsen genererar en pollenprognos baserat på användarens plats
+:seedling:Detta är en projketwebbplats utvecklad för kursen frontend-baserad webbutveckling på Mittuniversitetet.
+:seedling:Webbplatsen genererar en pollenprognos baserat på användarens plats.
 
 
