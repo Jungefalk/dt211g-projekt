@@ -29,7 +29,7 @@ window.addEventListener("load", init);
 showBtnEl.addEventListener("click", toggleRegionContainer);
 
 /**
- * Displays the all-regions container on click
+ * Displays or hides all-regions container on click
  */
 function toggleRegionContainer() {
 
@@ -48,7 +48,7 @@ function toggleRegionContainer() {
  */
 function init() {
 
-    console.log("Sidan har laddat in");
+    //call functions
     checkUserCoordinates();
     fetchPollenData();
 }
@@ -66,7 +66,6 @@ function checkUserCoordinates() {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
 
-            console.log("Användarens koordinater:", latitude, longitude)
 
             //Call function
             fetchUserLocation(latitude, longitude);
@@ -100,13 +99,15 @@ async function fetchUserLocation(latitude, longitude) {
             throw new Error("fel vid anslutning");
         };
 
+        //fetched data
         const locationData = await response.json();
-        console.log(locationData);
+
 
         //multiple options depending on location type in nominatim.
         userLocationName = locationData.address.city || locationData.address.town || locationData.address.village;
-        console.log("Användaren befinner sig:", userLocationName);
 
+
+        //call function
         fetchRegionData()
 
     } catch (error) {
@@ -128,7 +129,9 @@ async function fetchRegionData() {
             throw new Error("fel vid anslutning");
         };
 
+        //Fetched data
         const regionData = await response.json();
+        //Call function
         readRegionData(regionData);
 
     } catch (error) {
@@ -142,7 +145,7 @@ async function fetchRegionData() {
 /**
  * Function that receives and checks region data then updates DOM
  * @function
- * @param {object} regionData 
+ * @param {object} regionData - data of the regions
  */
 function readRegionData(regionData) {
 
@@ -156,7 +159,7 @@ function readRegionData(regionData) {
         geoRegionName.appendChild(geoRegionText);
         geoRegionEl.appendChild(geoRegionName);
 
-        console.log("Användarens plats ligger vid mätstation")
+
         fetchForecast(checkedRegion.id)
 
     } else {
@@ -183,7 +186,7 @@ function readRegionData(regionData) {
                 geoRegionName.textContent = `${data.name}`
             };
 
-
+            //call function
             fetchForecast(data.id)
         });
     });
@@ -207,19 +210,19 @@ async function fetchForecast(regionId) {
 
         forecastData = await response.json();
         let checkDate = forecastData.items[0].levelSeries;
-        console.log("det här är användarens:", forecastData);
 
         //save foecast text in varable and update DOM
         let forecastText = forecastData.items[0].text;
 
+        //Empty innerHTML
         infoTextEl.innerHTML = "";
 
+        //Create <p> element
         let newParagraphEl = document.createElement("p")
         let newParagraphText = document.createTextNode(forecastText);
         newParagraphEl.appendChild(newParagraphText);
         newParagraphEl.classList.add("infoMessage");
         infoTextEl.appendChild(newParagraphEl);
-
 
         //empty array incase user switches location
         todaysForecast = [];
@@ -227,8 +230,8 @@ async function fetchForecast(regionId) {
         //check if the forecast is todays date
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        console.log(today)
 
+        //loop data
         checkDate.forEach(data => {
 
             let apiDate = new Date(data.time);
@@ -250,8 +253,8 @@ async function fetchForecast(regionId) {
 
 
         });
-        console.log(todaysForecast);
 
+        //call function
         readBarChart();
 
     } catch (error) {
@@ -271,8 +274,8 @@ async function fetchPollenData() {
             throw new Error("fel vid anslutning");
         };
 
+        //Fetched data
         pollenData = await response.json();
-        console.log(pollenData);
 
     } catch (error) {
         console.error("Det uppstod ett fel:", error.message)
@@ -288,9 +291,11 @@ function readBarChart() {
     //Empty bar chart
     barChartEl.innerHTML = "";
 
+    //create new arrays
     const pollenName = todaysForecast.map(pollen => pollen.name);
     const pollenLevel = todaysForecast.map(pollen => pollen.level);
 
+    //Bar chart
     const options = {
         chart: {
             type: 'bar',
@@ -382,6 +387,4 @@ function readLocationErrorMessage() {
     messageEl.appendChild(newMessageText);
     messageEl.classList.add("errorMessage");
     geoRegionEl.appendChild(messageEl);
-
-    console.log("Användarens plats kunde inte hämtas");
 };
